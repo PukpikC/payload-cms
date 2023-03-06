@@ -1,28 +1,18 @@
 import {CollectionConfig} from 'payload/types';
 
+
 const OldShopContent: CollectionConfig = {
     slug: 'OldShopContent',
     admin: {
         useAsTitle: 'id',
     },
     access: {
-        read: ({ req: { user } }) => {
-            return true;
-        },
+        read: (): boolean => true
     },
     fields: [
         {
             name: 'id',
             type: 'text'
-        },
-        {
-            type: 'ui', // required
-            admin: {
-                components: {
-                    Field: MyCustomUIField,
-                    Cell: MyCustomUICell,
-                }
-            }
         },
         {
             name: 'title_tag',

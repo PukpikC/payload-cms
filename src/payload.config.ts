@@ -2,7 +2,7 @@ import {buildConfig} from 'payload/config';
 import path from 'path';
 // import Examples from './collections/Examples';
 import Users from './collections/Users';
-import Faq from "./collections/Faq";
+import NewShopContent from "./collections/NewShopContent";
 import Examples from "./collections/Examples";
 import OldShopContent from "./collections/OldShopContent";
 
@@ -16,7 +16,7 @@ export default buildConfig({
         OldShopContent,
         // Add Collections here
         // Examples,
-        Faq
+        NewShopContent
     ],
     localization: {
         locales: [
