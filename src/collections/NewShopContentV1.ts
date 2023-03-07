@@ -1,8 +1,15 @@
 import {CollectionConfig} from 'payload/types';
-import {CodeBlockV1, QABlockV1, QuoteBlockV1, RecommendationsBlockV1, SliderBlockV1} from "../blocks";
+import {
+    CodeBlockV1,
+    QABlockV1,
+    QuoteBlockV1,
+    RecommendationsBlockV1,
+    LargeSliderBlockV1,
+    FooterMenuV1, QABlockV2
+} from "../blocks";
 
-const NewShopContent: CollectionConfig = {
-    slug: 'new-shop-content',
+const NewShopContentV1: CollectionConfig = {
+    slug: 'new-shop-content-v1',
     admin: {
         useAsTitle: 'id',
     },
@@ -38,12 +45,14 @@ const NewShopContent: CollectionConfig = {
             blocks: [ // required
                 QuoteBlockV1,
                 QABlockV1,
-                SliderBlockV1,
+                QABlockV2,
+                LargeSliderBlockV1,
                 CodeBlockV1,
-                RecommendationsBlockV1
+                RecommendationsBlockV1,
+                FooterMenuV1
             ]
         },
     ],
 };
 
-export default NewShopContent;
+export default NewShopContentV1;

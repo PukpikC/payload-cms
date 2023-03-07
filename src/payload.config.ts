@@ -2,9 +2,9 @@ import {buildConfig} from 'payload/config';
 import path from 'path';
 // import Examples from './collections/Examples';
 import Users from './collections/Users';
-import NewShopContent from "./collections/NewShopContent";
-import Examples from "./collections/Examples";
-import OldShopContent from "./collections/OldShopContent";
+import FooterV1 from "./collections/FooterV1";
+import OldShopContentV1 from "./collections/OldShopContentV1";
+import NewShopContentV1 from "./collections/NewShopContentV1";
 
 export default buildConfig({
     serverURL: 'http://localhost:3000',
@@ -13,10 +13,9 @@ export default buildConfig({
     },
     collections: [
         Users,
-        OldShopContent,
-        // Add Collections here
-        // Examples,
-        NewShopContent
+        OldShopContentV1,
+        NewShopContentV1,
+        FooterV1
     ],
     localization: {
         locales: [

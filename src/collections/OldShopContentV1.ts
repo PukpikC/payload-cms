@@ -1,8 +1,7 @@
 import {CollectionConfig} from 'payload/types';
 
-
-const OldShopContent: CollectionConfig = {
-    slug: 'OldShopContent',
+const OldShopContentV1: CollectionConfig = {
+    slug: 'old-shop-content-v1',
     admin: {
         useAsTitle: 'id',
     },
@@ -47,4 +46,4 @@ const OldShopContent: CollectionConfig = {
     ],
 };
 
-export default OldShopContent;
+export default OldShopContentV1;
