@@ -58,6 +58,26 @@ const NewShopContentV1: CollectionConfig = {
                 position: "sidebar"
             }
         },
+        {
+            name: 'banners',
+            type: 'group',
+            fields: [
+                {
+                    name: 'banner_desktop',
+                    label: 'Banner Desktop',
+                    type: 'upload',
+                    relationTo: 'media',
+                    required: true,
+                },
+                {
+                    name: 'banner_mobile',
+                    label: 'Banner Mobile',
+                    type: 'upload',
+                    relationTo: 'media',
+                    required: true,
+                }
+            ]
+        },
         // https://github.com/payloadcms/nextjs-custom-server/blob/master/components/RenderBlocks/index.tsx
         {
             name: 'layout', // required
