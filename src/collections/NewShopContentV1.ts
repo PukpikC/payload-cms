@@ -5,36 +5,58 @@ import {
     QuoteBlockV1,
     RecommendationsBlockV1,
     LargeSliderBlockV1,
-    FooterMenuV1, QABlockV2
+    FooterMenuV1, QABlockV2,
+    collections
 } from "../blocks";
 
 const NewShopContentV1: CollectionConfig = {
     slug: 'new-shop-content-v1',
     admin: {
-        useAsTitle: 'id',
+        useAsTitle: 'name',
     },
     access: {
         read: (): boolean => true
     },
     fields: [
         {
+            label: 'Page ID',
             name: 'id',
-            type: 'text'
+            type: 'text',
+            admin: {
+                position: "sidebar"
+            }
+        },
+        {
+            label: 'Page Name',
+            name: 'name',
+            type: 'text',
+            admin: {
+                position: "sidebar"
+            }
         },
         {
             name: 'title_tag',
             localized: true,
             type: 'text',
+            admin: {
+                position: "sidebar"
+            }
         },
         {
             name: 'meta_description',
             localized: true,
             type: 'text',
+            admin: {
+                position: "sidebar"
+            }
         },
         {
             name: 'meta_keywords',
             localized: true,
             type: 'text',
+            admin: {
+                position: "sidebar"
+            }
         },
         // https://github.com/payloadcms/nextjs-custom-server/blob/master/components/RenderBlocks/index.tsx
         {
@@ -49,7 +71,10 @@ const NewShopContentV1: CollectionConfig = {
                 LargeSliderBlockV1,
                 CodeBlockV1,
                 RecommendationsBlockV1,
-                FooterMenuV1
+                FooterMenuV1,
+                collections.textFormat.Header,
+                collections.textFormat.textBody,
+                collections.textFormat.headerAndDescription,
             ]
         },
     ],

@@ -1,4 +1,5 @@
 import {Block} from "payload/types";
+import {textFormat} from "../blocks/TextFormat";
 
 export const QuoteBlockV1: Block = {
     slug: 'QuoteV1', // required
@@ -228,3 +229,11 @@ export const FooterMenuV1: Block = {
         },
     ]
 };
+
+export const collections = {
+    textFormat
+};
+
+// export const components = {
+//     cta,
+// };
