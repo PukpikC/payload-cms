@@ -1,0 +1,24 @@
+Description: Payload documents DB
+
+Parameters:
+
+  Env:
+    Type: String
+    AllowedValues:
+      - prod
+      - dev
+      - staging
+
+Resources:
+  PukpikTestBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: pukpiktestbucket
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
