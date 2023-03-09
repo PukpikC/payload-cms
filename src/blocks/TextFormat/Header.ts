@@ -43,11 +43,3 @@ export type Type = {
 	headerSize: string
 	headerColor: string
 }
-
-export const Component: React.FC<Type> = (props) => {
-	const {headerText, headerSize, color} = props;
-
-	return (
-		{headerText}
-	);
-};

@@ -63,18 +63,77 @@ const NewShopContentV1: CollectionConfig = {
             type: 'group',
             fields: [
                 {
-                    name: 'banner_desktop',
+                    name: 'banner_text',
+                    label: 'Banner Text',
+                    type: 'text',
+                    localized: true,
+                },
+                {
+                    name: 'banner_text_color',
+                    label: 'Banner Text Color',
+                    type: 'text',
+                    defaultValue: 'white'
+                },
+                {
+                    name: 'banner_type',
+                    label: 'Banner Type',
+                    type: 'select',
+                    options: [
+                        {
+                            label: 'Link',
+                            value: 'link',
+                        },
+                        {
+                            label: 'File',
+                            value: 'file',
+                        }
+                    ]
+                },
+                {
+                    name: 'banner_desktop_media',
                     label: 'Banner Desktop',
                     type: 'upload',
                     relationTo: 'media',
                     required: true,
+                    admin: {
+                        condition: (data, siblingData) => {
+                            return siblingData.banner_type === 'file'
+                        }
+                    }
                 },
                 {
-                    name: 'banner_mobile',
+                    name: 'banner_mobile_media',
                     label: 'Banner Mobile',
                     type: 'upload',
                     relationTo: 'media',
                     required: true,
+                    admin: {
+                        condition: (data, siblingData) => {
+                            return siblingData.banner_type === 'file'
+                        }
+                    }
+                },
+                {
+                    name: 'banner_desktop_url',
+                    label: 'Banner Desktop',
+                    type: 'text',
+                    required: true,
+                    admin: {
+                        condition: (data, siblingData) => {
+                            return siblingData.banner_type === 'link'
+                        }
+                    }
+                },
+                {
+                    name: 'banner_mobile_url',
+                    label: 'Banner Mobile',
+                    type: 'text',
+                    required: true,
+                    admin: {
+                        condition: (data, siblingData) => {
+                            return siblingData.banner_type === 'link'
+                        }
+                    }
                 }
             ]
         },
