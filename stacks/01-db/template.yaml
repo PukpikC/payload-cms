@@ -9,16 +9,79 @@ Parameters:
       - dev
       - staging
 
+#  MasterUser:
+#    NoEcho: "true"
+#    Description: "Payload CMS admin account username"
+#    Type: "String"
+#    MinLength: "1"
+#    MaxLength: "16"
+#    AllowedPattern: "[a-zA-Z][a-zA-Z0-9]*"
+#    ConstraintDescription: "Must begin with a letter and contain only alphanumeric characters."
+#
+#  MasterPassword:
+#    NoEcho: "true"
+#    Description: "Payload CMS admin account password"
+#    Type: "String"
+#    MinLength: "1"
+#    MaxLength: "41"
+#    AllowedPattern: "[a-zA-Z0-9]+"
+#    ConstraintDescription: "must contain only alphanumeric characters."
+
 Resources:
-  PukpikTestBucket:
-    Type: AWS::S3::Bucket
+  PayloadCmsDBSubnetGroup:
+    Type: AWS::DocDB::DBSubnetGroup
     Properties:
-      AccessControl: Private
-      BucketName: pukpiktestbucket
-      VersioningConfiguration:
-        Status: Enabled
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
+      DBSubnetGroupName: payload-cms-db-subnet-group
+      DBSubnetGroupDescription: PayloadCMS subnet group
+      SubnetIds:
+        - !ImportValue ShopPrivateSubnetA
+        - !ImportValue ShopPrivateSubnetB
+
+  PayloadCmsDBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: PayloadCMS DocDB Security Group
+      GroupName: PayloadCMS DocDB Security Group
+      VpcId: !ImportValue ShopVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 27017
+          ToPort: 27017
+          SourceSecurityGroupId: !Ref PayloadCmsSecurityGroup
+      Tags:
+        - Key: Env
+          Value: !Ref Env
+
+  PayloadCmsSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: PayloadCMS Security Group
+      GroupName: PayloadCMS Security Group
+      VpcId: !ImportValue ShopVPC
+
+  PayloadCMSDBCluster:
+    Type: AWS::DocDB::DBCluster
+    Properties:
+      BackupRetentionPeriod : 7
+      DBClusterIdentifier : payload-cms-cluster
+      MasterUsername : 'root'
+      MasterUserPassword : 'password'
+      Port : 27017
+      PreferredMaintenanceWindow: "Sun:05:00-Sun:06:00"
+      VpcSecurityGroupIds:
+        - !GetAtt PayloadCmsDBSecurityGroup.GroupId
+      DBSubnetGroupName: !Ref PayloadCmsDBSubnetGroup
+
+  PayloadCMSDBInstance:
+    Type: AWS::DocDB::DBInstance
+    Properties:
+      AutoMinorVersionUpgrade: true
+      AvailabilityZone: eu-central-1a
+      DBClusterIdentifier: !Ref PayloadCMSDBCluster
+      DBInstanceClass: db.t4g.medium
+      DBInstanceIdentifier: payload-cms-db-instance
+
+  PayloadCMSInstance:
+    Type: AWS::DocDB::DBInstance
+# PayloadCMS Instance (ECS)
+# IAM
