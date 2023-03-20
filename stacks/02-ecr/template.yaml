@@ -1,0 +1,9 @@
+Description: Payload CMS data syncing repositories.
+
+Resources:
+
+  PayloadRepo:
+    Type: 'AWS::ECR::Repository'
+    DeletionPolicy: Delete
+    Properties:
+      RepositoryName: payload-cms-image
