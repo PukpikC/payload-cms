@@ -3,6 +3,7 @@ version: '3'
 services:
 
   payload:
+    container_name: payload
     image: node:18-alpine
     ports:
       - "3000:3000"
@@ -14,13 +15,14 @@ services:
     depends_on:
       - mongo
     environment:
-      MONGODB_URI: mongodb://root:password@payload-cms-cluster.cluster-c418ntoufndk.eu-central-1.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false
-#      MONGODB_URI: mongodb://mongo:27017/payload
+      #MONGODB_URI: mongodb://root:password@payload-cms-cluster.cluster-c418ntoufndk.eu-central-1.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false
+      MONGODB_URI: mongodb://mongodb:27017/payload
       PORT: 3000
       NODE_ENV: development
       PAYLOAD_SECRET: TESTING
 
   mongo:
+    container_name: mongodb
     image: mongo:latest
     ports:
       - "27017:27017"
