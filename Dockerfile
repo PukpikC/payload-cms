@@ -3,12 +3,14 @@ FROM node:18.8-alpine as base
 FROM base as builder
 
 WORKDIR /home/node/app
-COPY package*.json ./
 
 RUN wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
 
-COPY . .
+COPY package*.json ./
+
 RUN yarn install
+
+COPY . .
 RUN yarn build
 
 FROM base as runtime

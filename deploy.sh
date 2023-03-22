@@ -41,21 +41,24 @@ printf "\nEnter ECR image tag (default '\033[0;31m${LATEST_TAG}\033[m' from ${CO
 read -r TAG
 [ ! -z ${TAG} ] || TAG=${LATEST_TAG}
 IMAGE="${URL}:${TAG}"
+
 # Profile
 while IFS= read -r line; do
     PROFILE_LIST+=("$line")
 done <<< "$(aws configure list-profiles)"
 unset IFS
+
 for PROFILE in "${PROFILE_LIST[@]}"
 do
     PROFILE="$(echo $PROFILE | sed 's~[^[:alnum:]_]\+~~g')"
     printf '.'
-    if [[ "$PROFILE" == "_temp" ]] || [[ "$PROFILE" == "staging"* ]]; then
+    if [[ "$PROFILE" == *"_temp"* ]] || [[ "$PROFILE" == "staging"* ]]; then
         CLEANED_PROFILE_LIST+=( "${PROFILE}" )
     fi
 done
 IFS=$'\n' CLEANED_PROFILE_LIST=($(sort <<< "${CLEANED_PROFILE_LIST[*]}"))
 unset IFS
+
 echo '';
 echo '';
 PS3='Choose profile: '
