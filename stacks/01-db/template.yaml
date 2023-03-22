@@ -89,5 +89,10 @@ Resources:
       DBInstanceClass: db.t4g.medium
       DBInstanceIdentifier: payload-cms-db-instance
 
-# PayloadCMS Instance (ECS)
-# IAM
+Outputs:
+
+  PayloadCMSDBClusterEndpoint:
+    Value: !GetAtt PayloadCMSDBCluster.Endpoint
+    Export:
+      Name: 'PayloadCMSDBClusterEndpoint'
+

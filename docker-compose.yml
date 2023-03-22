@@ -15,11 +15,11 @@ services:
     depends_on:
       - mongo
     environment:
-      #MONGODB_URI: mongodb://root:password@payload-cms-cluster.cluster-c418ntoufndk.eu-central-1.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false
       MONGODB_URI: mongodb://mongodb:27017/payload
       PORT: 3000
       NODE_ENV: development
       PAYLOAD_SECRET: TESTING
+      DB_HOST: mongodb
 
   mongo:
     container_name: mongodb

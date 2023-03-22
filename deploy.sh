@@ -21,7 +21,7 @@ then
     # todo
     URL="567927533262.dkr.ecr.eu-central-1.amazonaws.com/payload-cms-image"
     CONFIG_ENV="prod"
-    PASSWORD_STDIN="265259663562.dkr.ecr.eu-central-1.amazonaws.com"
+    PASSWORD_STDIN="567927533262.dkr.ecr.eu-central-1.amazonaws.com"
 fi
 LATEST_TAG=$(git tag -l --sort=-creatordate | head -n 1)
 [ ! -z ${LATEST_TAG} ] || LATEST_TAG='latest'
