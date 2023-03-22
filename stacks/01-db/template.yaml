@@ -44,10 +44,6 @@ Resources:
       GroupName: PayloadCMS DocDB Security Group
       VpcId: !ImportValue ShopVPC
       SecurityGroupIngress:
-#        - IpProtocol: tcp
-#          FromPort: 27017
-#          ToPort: 27017
-#          SourceSecurityGroupId: !Ref PayloadCmsSecurityGroup
         - IpProtocol: tcp
           FromPort: 27017
           ToPort: 27017
@@ -59,13 +55,6 @@ Resources:
       Tags:
         - Key: Env
           Value: !Ref Env
-
-#  PayloadCmsSecurityGroup:
-#    Type: AWS::EC2::SecurityGroup
-#    Properties:
-#      GroupDescription: PayloadCMS Security Group
-#      GroupName: PayloadCMS Security Group
-#      VpcId: !ImportValue ShopVPC
 
   PayloadCMSDBCluster:
     Type: AWS::DocDB::DBCluster
