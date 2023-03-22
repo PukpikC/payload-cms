@@ -7,10 +7,10 @@ WORKDIR /home/node/app
 RUN wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
 
 COPY package*.json ./
+COPY . .
 
 RUN yarn install
 
-COPY . .
 RUN yarn build
 
 FROM base as runtime
